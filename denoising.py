@@ -2,10 +2,11 @@
 #import ImageOps
 import numpy as np
 from time import time
-from sklearn.decomposition import MiniBatchDictionaryLearning
+from sklearn.decomposition import MiniBatchDictionaryLearning,SparseCoder
 from keras.datasets import mnist
 from function import *
 import matplotlib.pyplot as plt
+
 
 (train_images,train_labels),(test_images,test_labels)=mnist.load_data()
 
@@ -41,4 +42,7 @@ for i,comp in enumerate(V[:100]):
     plt.xticks(())
     plt.yticks(())
 
+
+sparsecoding=SparseCoder(V,transform_n_nonzero_coefs=30,transform_alpha=1.0)
+sparsecoding.transform(test_image[0])
 plt.show()
